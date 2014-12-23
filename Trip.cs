@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lab3
 {
-    class Trip
+    public class Trip
     {
         public String dep_station;
         public String arr_station;
