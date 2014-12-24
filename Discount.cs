@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Math;
 
 namespace Lab3
 {
@@ -22,7 +21,7 @@ namespace Lab3
         }
         public static float calculateDiscountPrice(float total, UIDiscount discounttype)
         {
-            return (float)Math.Round(total * getDiscount(discounttype));
+            return (float)Math.Round(total * getDiscount(discounttype),1);
         }
     }
 }

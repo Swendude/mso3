@@ -8,15 +8,14 @@ namespace Lab3
     class Purchase
     {
         public Trip trip;
-        public int amount_tickets;
+        //public int amount_tickets; //Not used by this GUI
         public Payment payment;
         public UIPayment paymentType;
         public UIClass classtype;
         public String dep_station;
         public String arr_station;
         public float total;
-        public String ticketprinter;//There is no ticketprinter, otherwise is would be here
-        public Discount discount;
+        //public String ticketprinter;//There is no ticketprinter, otherwise is would be here
         public UIDiscount discounttype;
         
         public Purchase(String arr, String dep, UIDiscount discountt, UIClass class_t, UIPayment paymenttype)
@@ -34,12 +33,17 @@ namespace Lab3
             return trip;
         }
         // Calculates the total price of the purchase
-        public float calculateTotal()
+        public float calculateTotal(bool way)
         {
             int tariefeenheden = trip.getDistance();
             float baseprice = trip.getPrice(tariefeenheden, classtype);
             float discountprice = Discount.calculateDiscountPrice(baseprice, discounttype);
-            total = discountprice * amount_tickets;
+            total = discountprice; //* amount_tickets;
+            // return ticket
+            if (way)
+            {
+                total = total * 2;
+            }
             float totalwithpayment = Paymentfee.calculatePaymentPrice(total, paymentType);
             return totalwithpayment;
         }
