@@ -27,22 +27,26 @@ namespace Lab3
             class_type = class_t;
             paymentType = paymenttype;
         }
+        // Creates and stores a new trip objects
         public Trip makeTrip(String arr, String dep)
         {
             trip = new Trip(dep, arr);
             return trip;
         }
+        // Calculates the total price of the purchase
         public float calculateTotal()
         {
             int tariefeenheden = trip.getDistance();
             float baseprice = trip.getPrice(tariefeenheden);
             float discountprice = discount.calculateDiscountPrice(baseprice, discountstring);
             total = discountprice * amount_tickets;
-            totalwithpayment = total + paymentFee.calculatePaymentPrice()
-            return total;
+            float totalwithpayment = Paymentfee.calculatePaymentPrice(total, paymentType);
+            return totalwithpayment;
         }
         //public Payment askPayment()
         // This function can't be implemented because of the UI's implementation, it should have asked for a payment type but it already knows this.
+        
+        // This starts the payment and checks if it's completed
         public bool processPayment(float Total)
         {
             payment = new Payment(paymentType);
