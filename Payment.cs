@@ -14,7 +14,7 @@ namespace Lab3
             paymenttype = pt;
         }
 
-        public bool Start()
+        public bool startPayment(float price)
         {
             switch (paymenttype)
             {

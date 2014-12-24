@@ -8,23 +8,23 @@ namespace Lab3
     class Purchase
     {
         public Trip trip;
-        public int class_type;
         public int amount_tickets;
         public Payment payment;
         public UIPayment paymentType;
+        public UIClass classtype;
         public String dep_station;
         public String arr_station;
         public float total;
         public String ticketprinter;//There is no ticketprinter, otherwise is would be here
         public Discount discount;
-        public String discountstring;
+        public UIDiscount discounttype;
         
-        public Purchase(String arr, String dep, String discounttype, int class_t, UIPayment paymenttype)
+        public Purchase(String arr, String dep, UIDiscount discountt, UIClass class_t, UIPayment paymenttype)
         {
             dep_station = dep;
             arr_station = arr;
-            discountstring = discounttype;
-            class_type = class_t;
+            discounttype = discountt;
+            classtype = class_t;
             paymentType = paymenttype;
         }
         // Creates and stores a new trip objects
@@ -37,8 +37,8 @@ namespace Lab3
         public float calculateTotal()
         {
             int tariefeenheden = trip.getDistance();
-            float baseprice = trip.getPrice(tariefeenheden);
-            float discountprice = discount.calculateDiscountPrice(baseprice, discountstring);
+            float baseprice = trip.getPrice(tariefeenheden, classtype);
+            float discountprice = Discount.calculateDiscountPrice(baseprice, discounttype);
             total = discountprice * amount_tickets;
             float totalwithpayment = Paymentfee.calculatePaymentPrice(total, paymentType);
             return totalwithpayment;
@@ -50,7 +50,7 @@ namespace Lab3
         public bool processPayment(float Total)
         {
             payment = new Payment(paymentType);
-            bool paymentComplete = startPayment(Total);
+            bool paymentComplete = payment.startPayment(Total);
             return paymentComplete;
         }  
         //public void print()

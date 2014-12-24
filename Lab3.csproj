@@ -37,6 +37,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Discount.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Paymentfee.cs" />
     <Compile Include="Purchase.cs" />

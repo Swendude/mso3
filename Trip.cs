@@ -21,10 +21,16 @@ namespace Lab3
             tarief_eenheden = Tariefeenheden.getTariefeenheden(dep_station, arr_station);
             return tarief_eenheden;
         } 
-        public float getPrice()
+        // This had to change, it should also consider the class!
+        public float getPrice(int tfe, UIClass typeClass)
         {
-            // We always take the first column and calculate a discount percentage afterwards!
-            return PricingTable.getPrice(tarief_eenheden,0);
+            switch (typeClass)
+            {
+                case UIClass.FirstClass:
+                    return PricingTable.getPrice(tfe, 3);
+                default:
+                    return PricingTable.getPrice(tfe, 0);
+            }
         }
     }
 }
